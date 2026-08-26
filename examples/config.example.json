@@ -1,0 +1,87 @@
+{
+  "version": "modbus-edge-agent.config.v1",
+  "gateway": {
+    "gateway_id": "lab-gateway-01",
+    "tenant_slug": "example-tenant",
+    "site_slug": "test-bench",
+    "default_poll_interval_seconds": 10,
+    "buffer_dir": "./edge-buffer",
+    "synthetic_source": true
+  },
+  "mqtt": {
+    "host": "127.0.0.1",
+    "port": 1883,
+    "client_id": "lab-gateway-01",
+    "qos": 1,
+    "keepalive_seconds": 60,
+    "username_env": "MQTT_USERNAME",
+    "password_env": "MQTT_PASSWORD",
+    "tls": {
+      "enabled": false,
+      "ca_file": "",
+      "cert_file": "",
+      "key_file": ""
+    }
+  },
+  "modbus": {
+    "mode": "rtu",
+    "port": "/dev/ttyUSB0",
+    "baudrate": 9600,
+    "bytesize": 8,
+    "parity": "N",
+    "stopbits": 1,
+    "timeout_seconds": 2
+  },
+  "devices": [
+    {
+      "device_id": "pump-01",
+      "slave_id": 1,
+      "poll_interval_seconds": 10,
+      "auth_token_env": "DEVICE_TOKEN_PUMP_01",
+      "profile_version": 1,
+      "registers": [
+        {
+          "param_code": "pressure_bar",
+          "function": "holding_registers",
+          "address": 100,
+          "count": 1,
+          "data_type": "uint16",
+          "scale": 0.1,
+          "offset": 0,
+          "precision": 1,
+          "required": true,
+          "word_order": "big",
+          "byte_order": "big"
+        },
+        {
+          "param_code": "temperature_c",
+          "function": "holding_registers",
+          "address": 101,
+          "count": 1,
+          "data_type": "int16",
+          "scale": 0.1,
+          "offset": 0,
+          "precision": 1,
+          "required": true,
+          "word_order": "big",
+          "byte_order": "big"
+        },
+        {
+          "param_code": "status_word",
+          "function": "holding_registers",
+          "address": 110,
+          "count": 1,
+          "data_type": "uint16",
+          "scale": 1,
+          "offset": 0,
+          "precision": 0,
+          "required": true,
+          "bit_params": {
+            "alarm_sensor_fault": 0,
+            "alarm_pressure_high": 7
+          }
+        }
+      ]
+    }
+  ]
+}

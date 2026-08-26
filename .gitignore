@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+coverage/
+.coverage
+.env
+.env.*
+!.env.example
+!*.env.example
+edge-buffer/
+*.jsonl
+.DS_Store

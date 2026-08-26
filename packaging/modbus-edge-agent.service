@@ -1,0 +1,30 @@
+[Unit]
+Description=Read-only Modbus RTU to MQTT Edge Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=modbus-edge
+Group=modbus-edge
+SupplementaryGroups=dialout
+WorkingDirectory=/opt/modbus-edge-agent
+EnvironmentFile=-/etc/modbus-edge-agent/edge-agent.env
+ExecStart=/opt/modbus-edge-agent/venv/bin/modbus-edge-agent --config /etc/modbus-edge-agent/config.json
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadWritePaths=/var/lib/modbus-edge-agent
+
+[Install]
+WantedBy=multi-user.target
