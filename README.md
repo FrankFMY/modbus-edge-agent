@@ -1,6 +1,6 @@
 # Modbus Edge Agent
 
-A conservative read-only Modbus RTU edge agent with semantic register decoding, durable local buffering, and MQTT QoS 1 publishing.
+A read-only Modbus RTU edge agent with semantic register decoding, durable local buffering, and MQTT QoS 1 publishing.
 
 I built this agent for industrial telemetry pilots where field devices must remain local, control authority must stay outside the cloud path, and dry-run evidence must never be confused with observed hardware data.
 
@@ -54,9 +54,13 @@ cd modbus-edge-agent
 python3 -m venv .venv
 .venv/bin/pip install .
 
-.venv/bin/modbus-edge-agent   --config examples/config.example.json   --validate-config
+.venv/bin/modbus-edge-agent \
+  --config examples/config.example.json \
+  --validate-config
 
-.venv/bin/modbus-edge-agent   --config examples/config.example.json   --dry-run   --no-mqtt   --once
+.venv/bin/modbus-edge-agent \
+  --config examples/config.example.json \
+  --dry-run --no-mqtt --once
 ```
 
 The example is synthetic and uses generated identities only.
@@ -105,13 +109,13 @@ python3 -m compileall -q src tests
 bash -n packaging/install.sh
 ```
 
-## Author
+## Author and contact
 
-**Artem Prianishnikov**
+**Artem Prianishnikov** · [FrankFMY](https://github.com/FrankFMY)
 
-- GitHub: https://github.com/FrankFMY
-- Website: https://frankfmy.com
-- Email: Pryanishnikovartem@gmail.com
+[Website](https://frankfmy.com) · [Telegram](https://t.me/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY) · [npm profile](https://www.npmjs.com/~frankfmy)
+
+Email: [frankfmy@proton.me](mailto:frankfmy@proton.me) · [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com)
 
 ## License
 
